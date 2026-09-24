@@ -1,0 +1,22 @@
+# ---------- 构建产物（不进仓库，exe 走 Release 或本地编译） ----------
+dist/
+bin/
+obj/
+*.exe
+*.pdb
+*.user
+
+# ---------- 编辑器 / IDE ----------
+.vs/
+.idea/
+*.suo
+*.userprefs
+
+# ---------- 系统杂项 ----------
+Thumbs.db
+desktop.ini
+*.tmp
+
+# 误落在这里的安装残留（空目录）
+NVIDIA Corporation/
+

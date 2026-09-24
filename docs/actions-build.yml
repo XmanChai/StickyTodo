@@ -1,0 +1,41 @@
+name: build
+
+# 推送到 main、打 tag、或手动触发时编译
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 显示环境
+        shell: pwsh
+        run: |
+          $env:COMPUTERNAME
+          Test-Path "$env:WINDIR\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+
+      - name: 编译（csc，无需 VS / NuGet）
+        shell: pwsh
+        run: ./build.ps1 -Clean
+
+      - name: 上传产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: StickyTodo
+          path: dist/StickyTodo.exe
+
+      # 打了 v* tag 时，顺便把 exe 挂到 Release 上
+      - name: 发布 Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/StickyTodo.exe
+          generate_release_notes: true
