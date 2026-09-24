@@ -157,5 +157,5 @@ StickyTodo/
 | `docs/StickyTodo-博客稿.md` | 面向博客的软件介绍（含界面截图，可直接发布） |
 | `docs/上传到GitHub.md` | 把本项目推到 GitHub 的完整步骤（含凭据、Release、CI 说明） |
 | `docs/actions-build.yml` | GitHub Actions 配置。**复制到 `.github/workflows/build.yml` 后生效**：推送到 main 自动用 `csc` 编译并上传产物，打 `v*` tag 自动把 exe 挂到 Release |
-| `LICENSE` | MIT（请把 `<你的名字>` 换成你自己的名字） |
+| `LICENSE` | MIT |
 
